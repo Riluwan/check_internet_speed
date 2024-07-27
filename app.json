@@ -1,0 +1,17 @@
+{
+  "name": "Flask Speedtest App",
+  "description": "A simple Flask application to measure internet speed.",
+  "repository": "https://github.com/Riluwan/check_internet_speed/",
+  "keywords": ["flask", "speedtest", "internet", "python"],
+  "env": {
+    "BOT_NAME": {
+      "description": "The name of your bot",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
