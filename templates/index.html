@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .speed {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Internet Speed Test</h1>
+    <div>
+        <p>Download Speed: <span id="download-speed" class="speed">Loading...</span> Mbps</p>
+        <p>Upload Speed: <span id="upload-speed" class="speed">Loading...</span> Mbps</p>
+        <p>Ping: <span id="ping" class="speed">Loading...</span> ms</p>
+    </div>
+    <script>
+        async function fetchSpeed() {
+            const response = await fetch('/speedtest');
+            const data = await response.json();
+            document.getElementById('download-speed').innerText = data.download_speed_mbps.toFixed(2);
+            document.getElementById('upload-speed').innerText = data.upload_speed_mbps.toFixed(2);
+            document.getElementById('ping').innerText = data.ping_ms.toFixed(2);
+        }
+
+        function startFetchingSpeed() {
+            fetchSpeed();
+            setInterval(fetchSpeed, 10000); // Fetch speed every 10 seconds
+        }
+
+        window.onload = startFetchingSpeed;
+    </script>
+</body>
+</html>
